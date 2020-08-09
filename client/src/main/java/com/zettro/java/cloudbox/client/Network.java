@@ -1,5 +1,7 @@
-package com.zettro.java.cloudbox.common;
+package com.zettro.java.cloudbox.client;
 
+import com.zettro.java.cloudbox.common.AbstractMessage;
+import com.zettro.java.cloudbox.common.AuthRequest;
 import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
 import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
 
@@ -15,7 +17,7 @@ public class Network {
         try {
             socket = new Socket("localhost", 8189);
             out = new ObjectEncoderOutputStream(socket.getOutputStream());
-            in = new ObjectDecoderInputStream(socket.getInputStream(), 50 * 1024 * 1024);
+            in = new ObjectDecoderInputStream(socket.getInputStream(),  1024 * 1024);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,6 +49,10 @@ public class Network {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void sendAuth(String username) throws IOException {
+        out.writeObject(new AuthRequest(username));
     }
 
     public static AbstractMessage readObject() throws ClassNotFoundException, IOException {

@@ -6,12 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class CloudBoxClient extends Application {
+    public final static String clientStoragePath = "client_storage/";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
-        primaryStage.setTitle("Simple cloud box");
+        primaryStage.setTitle("Simple cloud box client");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }

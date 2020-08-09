@@ -1,9 +1,6 @@
 package com.zettro.java.cloudbox.client;
 
-import com.zettro.java.cloudbox.common.AbstractMessage;
-import com.zettro.java.cloudbox.common.FileMessage;
-import com.zettro.java.cloudbox.common.FileRequest;
-import com.zettro.java.cloudbox.common.Network;
+import com.zettro.java.cloudbox.common.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,14 +8,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    private boolean authPassed = false;
+    private String username = "user1";
+    private FileOutputStream fos = null;
+    private int chunkCounter = 0;
+
     @FXML
     TextField tfFileName;
 
@@ -30,13 +32,56 @@ public class Controller implements Initializable {
         Network.start();
         Thread t = new Thread(() -> {
             try {
+                // заглушка для аутентификации на сервере
+                Network.sendAuth(username);
+
                 while (true) {
+                    refreshLocalFilesList();
                     AbstractMessage am = Network.readObject();
-                    if (am instanceof FileMessage) {
-                        FileMessage fm = (FileMessage) am;
-                        Files.write(Paths.get("client_storage/" + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
-                        refreshLocalFilesList();
+                    System.out.println("Message received");
+                    if (am instanceof AuthAnswer) {
+                        System.out.println("AuthAnswer received");
+                        AuthAnswer authAnswer = (AuthAnswer) am;
+                        if (authAnswer.getAuthResult() == AuthAnswer.AuthResult.PASSED) {
+                            authPassed = true;
+                            System.out.println("Authentication passed");
+                            continue;
+                        }
+                        System.out.println("Authentication failed");
                     }
+
+                    if (!authPassed) continue;
+
+                    if (am instanceof ChunkedFileMessage) {
+                        System.out.println("ChunkedFileMessage received");
+
+                        ChunkedFileMessage cfm = (ChunkedFileMessage) am;
+                        if (cfm.getBytesRead() != -1) {
+                            if (cfm.getBytesRead() == 0) {
+                                System.out.println("Creating file " + username + "/" + cfm.getFilename());
+                                fos = new FileOutputStream(CloudBoxClient.clientStoragePath + username + "/" + cfm.getFilename());
+                                chunkCounter = 0;
+                                //Files.write(Paths.get(CloudBoxClient.clientStoragePath + userName + "/" + cfm.getFilename()), new byte[0], StandardOpenOption.CREATE);
+                            } else {
+                                chunkCounter++;
+                                System.out.println("Writing " + chunkCounter + " chunk to " + username + "/" + cfm.getFilename() + "; Bytes read = " + cfm.getBytesRead());
+                                fos.write(cfm.getData(), 0, cfm.getBytesRead());
+                                // Files.write(Paths.get(CloudBoxClient.clientStoragePath + userName + "/" + cfm.getFilename()), cfm.getData(), StandardOpenOption.APPEND);
+                            }
+                        } else {
+                            fos.flush();
+                            fos.close();
+                            fos = null;
+                        }
+                        continue;
+                    }
+
+                    if (am instanceof ErrorMessage) {
+                        ErrorMessage em = (ErrorMessage) am;
+                        System.out.println(em.getMessage());
+                        continue;
+                    }
+
                 }
             } catch (ClassNotFoundException | IOException e) {
                 e.printStackTrace();
@@ -60,7 +105,7 @@ public class Controller implements Initializable {
         Platform.runLater(() -> {
             try {
                 filesList.getItems().clear();
-                Files.list(Paths.get("client_storage"))
+                Files.list(Paths.get(CloudBoxClient.clientStoragePath + username + "/"))
                         .filter(p -> !Files.isDirectory(p))
                         .map(p -> p.getFileName().toString())
                         .forEach(o -> filesList.getItems().add(o));
@@ -68,5 +113,19 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void pressOnSendBtn(ActionEvent actionEvent) throws IOException {
+        if (filesList.getSelectionModel().getSelectedItem() != null) {
+            ChunkedFileMessage cfm = new ChunkedFileMessage(
+                    Paths.get(CloudBoxClient.clientStoragePath + username + "/" +
+                            filesList.getSelectionModel().getSelectedItem()), 64 * 1024);
+            Network.sendMsg(cfm);
+            while (cfm.readNextChunk() != -1) {
+                Network.sendMsg(cfm);
+            }
+            Network.sendMsg(cfm);
+            cfm.close();
+        }
     }
 }

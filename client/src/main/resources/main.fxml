@@ -11,9 +11,9 @@
       xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea"
       fx:controller="com.zettro.java.cloudbox.client.Controller">
     <HBox>
-        <TextField fx:id="tfFileName" focusTraversable="false"
-                   promptText="Укажите имя файла на сервере, который хотите скачать" HBox.hgrow="ALWAYS"/>
-        <Button onAction="#pressOnDownloadBtn" text="Скачать"/>
+        <TextField fx:id="tfFileName" focusTraversable="false" promptText="Укажите имя файла, который хотите скачать с сервера" HBox.hgrow="ALWAYS" />
+        <Button onAction="#pressOnDownloadBtn" text="Скачать" />
+        <Button onAction="#pressOnSendBtn" text="Отправить" />
     </HBox>
-    <ListView fx:id="filesList" VBox.vgrow="ALWAYS"/>
+    <ListView fx:id="filesList" prefHeight="374.0" prefWidth="434.0" VBox.vgrow="ALWAYS" />
 </VBox>

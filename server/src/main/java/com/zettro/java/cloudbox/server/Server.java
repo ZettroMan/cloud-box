@@ -12,6 +12,9 @@ import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 
 public class Server {
+
+    public final static String serverStoragePath = "server_storage/";
+
     public void run() throws Exception {
         EventLoopGroup mainGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -22,9 +25,9 @@ public class Server {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel socketChannel) {
                             socketChannel.pipeline().addLast(
-                                    new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                                    new ObjectDecoder(1024 * 1024, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new MainHandler()
+                                    new AuthHandler()
                             );
                         }
                     });
