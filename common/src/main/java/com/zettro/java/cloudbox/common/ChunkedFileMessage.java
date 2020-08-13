@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class ChunkedFileMessage extends AbstractMessage {
+
+    private static final long serialVersionUID = 2352661013718553948L;
+
     private final String filename;
     private final byte[] data;
     private int bytesRead = 0;
