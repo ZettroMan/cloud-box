@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" style="-fx-background-color: linear-gradient(#fff 0%, #eee 10%, #ddd 90%, #bbb 100%);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zettro.java.cloudbox.client.MainController">
+    <HBox VBox.vgrow="ALWAYS">
+        <VBox minWidth="-Infinity" prefWidth="350.0" spacing="2.0" HBox.hgrow="ALWAYS">
+            <HBox spacing="2.0">
+                <Button onAction="#pressOnLocalUpBtn" text=" ↑ ">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <TextField fx:id="tfLocalPath" editable="false" focusTraversable="false" HBox.hgrow="ALWAYS" />
+                <Button onAction="#pressOnLocalRefreshBtn" text="Обновить" />
+            </HBox>
+            <ListView fx:id="localFilesList" VBox.vgrow="ALWAYS" />
+            <padding>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+        </VBox>
+        <VBox minWidth="-Infinity" prefWidth="500.0" spacing="2.0" HBox.hgrow="ALWAYS">
+            <HBox spacing="2.0">
+                <TextField fx:id="tfUsername" focusTraversable="false" promptText="Логин" HBox.hgrow="ALWAYS" />
+                <PasswordField fx:id="tfPassword" promptText="Пароль" HBox.hgrow="ALWAYS" />
+                <TextField fx:id="tfServerAddress" focusTraversable="false" prefHeight="26.0" prefWidth="150.0" promptText="Адрес сервера" HBox.hgrow="ALWAYS" />
+                <TextField fx:id="tfServerPort" focusTraversable="false" minWidth="-Infinity" prefHeight="26.0" prefWidth="67.0" promptText="Порт" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnConnect" minWidth="-Infinity" onAction="#pressOnConnectBtn" prefHeight="26.0" prefWidth="87.0" text="Соединиться" />
+            </HBox>
+            <ListView fx:id="remoteFilesList" VBox.vgrow="ALWAYS" />
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+            <padding>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+        </VBox>
+    </HBox>
+    <HBox spacing="5.0" VBox.vgrow="NEVER">
+        <Button focusTraversable="false" maxWidth="Infinity" onAction="#pressOnCopyBtn" text="Копировать" HBox.hgrow="ALWAYS" />
+        <Button focusTraversable="false" maxWidth="Infinity" onAction="#pressOnDeleteBtn" text="Удалить" HBox.hgrow="ALWAYS" />
+        <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" />
+        </padding>
+    </HBox>
+</VBox>
