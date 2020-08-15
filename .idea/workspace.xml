@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="First_step" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="master" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="ZettroMan" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="cloud-box" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1fhCjgebqTVpgBvB1FnYfi8mM3o" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.34367815" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zettro.java.cloudbox.common" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zettro.java.cloudbox.common" />
+      <recent name="com.zettro.java.cloudbox.server" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\client\client_storage\user1" />
+      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\server\server_storage\user1" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.CloudBoxClient" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="" />
+      <created>1596661076960</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596661076960</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1596666976122</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1596666976122</updated>
+    </task>
+    <task id="LOCAL-00002" summary="First commit">
+      <created>1596667433509</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596667433509</updated>
+    </task>
+    <task id="LOCAL-00003" summary="First commit">
+      <created>1596668017123</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596668017123</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Second commit">
+      <created>1597008206651</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1597008206651</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Third commit">
+      <created>1597312991994</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597312991994</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="First commit" />
+    <MESSAGE value="Second commit" />
+    <MESSAGE value="Third commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Third commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="249" y="6" key="#Project_Structure" timestamp="1597001405981">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="249" y="6" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1597001405981" />
+    <state x="223" y="87" width="1089" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597473977622">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="223" y="87" width="1089" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1597473977622" />
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1597310808359">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597310808359" />
+    <state x="524" y="135" key="#xdebugger.evaluate" timestamp="1597162053270">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="524" y="135" key="#xdebugger.evaluate/0.0.1536.864@0.0.1536.864" timestamp="1597162053270" />
+    <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1597312989614">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597312989614" />
+    <state x="147" y="68" key="DiffContextDialog" timestamp="1597312751769">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="147" y="68" key="DiffContextDialog/0.0.1536.864@0.0.1536.864" timestamp="1597312751769" />
+    <state x="548" y="187" key="FileChooserDialogImpl" timestamp="1596663495898">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="548" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1596663495898" />
+    <state x="556" y="299" key="Github.CreatePullRequestDialog" timestamp="1597008402301">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="556" y="299" key="Github.CreatePullRequestDialog/0.0.1536.864@0.0.1536.864" timestamp="1597008402301" />
+    <state x="647" y="330" key="Github.ShareDialog" timestamp="1596666672379">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="647" y="330" key="Github.ShareDialog/0.0.1536.864@0.0.1536.864" timestamp="1596666672379" />
+    <state x="529" y="129" key="Github.UntrackedFilesDialog" timestamp="1596666705750">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="529" y="129" key="Github.UntrackedFilesDialog/0.0.1536.864@0.0.1536.864" timestamp="1596666705750" />
+    <state width="1493" height="90" key="GridCell.Tab.0.bottom" timestamp="1597312823533">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="90" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597312823533" />
+    <state width="1493" height="90" key="GridCell.Tab.0.center" timestamp="1597312823533">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="90" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597312823533" />
+    <state width="1493" height="90" key="GridCell.Tab.0.left" timestamp="1597312823533">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="90" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597312823533" />
+    <state width="1493" height="90" key="GridCell.Tab.0.right" timestamp="1597312823533">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="90" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597312823533" />
+    <state x="555" y="66" key="SettingsEditor" timestamp="1596865430397">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="555" y="66" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1596865430397" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597313003108">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597313003108" />
+    <state x="407" y="161" width="1035" height="543" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1597008390237">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="407" y="161" width="1035" height="543" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1536.864@0.0.1536.864" timestamp="1597008390237" />
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597473815284">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1597473815284" />
+    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597161749056">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1597161749056" />
+    <state x="570" y="338" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1596666554415">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="570" y="338" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.864@0.0.1536.864" timestamp="1596666554415" />
+    <state x="209" y="93" key="new project wizard" timestamp="1596661225475">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="209" y="93" key="new project wizard/0.0.1536.864@0.0.1536.864" timestamp="1596661225475" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1597250927950">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1597250927950" />
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1597300598236">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1597300598236" />
+  </component>
+</project>
