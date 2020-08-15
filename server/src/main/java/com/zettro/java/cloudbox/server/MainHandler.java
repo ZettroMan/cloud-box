@@ -1,9 +1,6 @@
 package com.zettro.java.cloudbox.server;
 
-import com.zettro.java.cloudbox.common.ChunkedFileMessage;
-import com.zettro.java.cloudbox.common.ConfirmationMessage;
-import com.zettro.java.cloudbox.common.ErrorMessage;
-import com.zettro.java.cloudbox.common.FileRequest;
+import com.zettro.java.cloudbox.common.*;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -18,6 +15,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     private final String username;
     private FileOutputStream fos = null;
     private int chunkCounter = 0;
+    private boolean transferMode = false;
     Semaphore semaphore = new Semaphore(1);
 
     public MainHandler(String username) {
@@ -36,33 +34,35 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        // System.out.println("Message received");
         if (msg instanceof FileRequest) {
-           // System.out.println("File request received");
+            if (transferMode) {
+                System.out.println("File transfer in progress. Request ignored!");
+                return;
+            }
             FileRequest fr = (FileRequest) msg;
-            String filename = Server.serverStoragePath + username + "/" + fr.getFilename();
+            String filename = Server.serverStoragePath + username + "/" + fr.getFileName();
             if (Files.exists(Paths.get(filename)) && (!Files.isDirectory(Paths.get(filename)))) {
                 semaphore = new Semaphore(1);
+                transferMode = true;
                 new Thread(() -> {
-                     try {
-                         ChunkedFileMessage cfm = new ChunkedFileMessage(Paths.get(filename), 1024 * 1024);
-                         chunkCounter = 0;
-                         semaphore.acquire();
-                         ctx.writeAndFlush(cfm); // сначала создаем файл (bytesRead == 0)
-                         semaphore.acquire();
-                         // пока не будет прочитан конец файла последовательно читаем файл в буффер передаем через сериализацию                    int chunkCounter = 0;
-                         while (cfm.readNextChunk() != -1) {
+                    try {
+                        ChunkedFileMessage cfm = new ChunkedFileMessage(Paths.get(filename), 1024 * 1024);
+                        chunkCounter = 0;
+                        semaphore.acquire();
+                        ctx.writeAndFlush(cfm); // сначала создаем файл (bytesRead == 0)
+                        semaphore.acquire();
+                        // пока не будет прочитан конец файла последовательно читаем файл в буффер передаем через сериализацию                    int chunkCounter = 0;
+                        while (cfm.readNextChunk() != -1) {
                             ctx.writeAndFlush(cfm);
                             chunkCounter++;
-                           // System.out.println(cfm.getBytesRead() + " bytes sent in chunk #" + chunkCounter);
                             semaphore.acquire();
                         }
                         ctx.writeAndFlush(cfm); // передаем конец файла});
-                         // System.out.println("Writing eof");
-                         semaphore.acquire();
+                        semaphore.acquire();
                     } catch (IOException | InterruptedException e) {
                         e.printStackTrace();
                     }
+                    transferMode = false;
                 }).start();
             } else {
                 System.out.println("File not found or it is a directory");
@@ -72,7 +72,6 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
 
         if (msg instanceof ConfirmationMessage) {
             semaphore.release();
-            //System.out.println("Confirmation received. Semaphore value is " + semaphore.availablePermits());
         }
         if (msg instanceof ChunkedFileMessage) {
             //System.out.println("ChunkedFileMessage received");
@@ -80,21 +79,29 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             ChunkedFileMessage cfm = (ChunkedFileMessage) msg;
             if (cfm.getBytesRead() != -1) {
                 if (cfm.getBytesRead() == 0) {
-                   // System.out.println("Creating file " + username + "/" + cfm.getFilename());
-                    fos = new FileOutputStream(Server.serverStoragePath + username + "/" + cfm.getFilename());
+                    fos = new FileOutputStream(Server.serverStoragePath + username + "/" + cfm.getFileName());
                     chunkCounter = 0;
-                    //Files.write(Paths.get(CloudBoxClient.clientStoragePath + userName + "/" + cfm.getFilename()), new byte[0], StandardOpenOption.CREATE);
                 } else {
                     chunkCounter++;
-                 //   System.out.println("Writing " + chunkCounter + " chunk to " + username + "/" + cfm.getFilename() + "; Bytes read = " + cfm.getBytesRead());
                     fos.write(cfm.getData(), 0, cfm.getBytesRead());
-                    // Files.write(Paths.get(CloudBoxClient.clientStoragePath + userName + "/" + cfm.getFilename()), cfm.getData(), StandardOpenOption.APPEND);
                 }
             } else {
                 fos.flush();
                 fos.close();
                 fos = null;
             }
+        }
+        if (msg instanceof FilesListRequest) {
+            if (transferMode) {
+                System.out.println("File transfer in progress. Request ignored!");
+                return;
+            }
+            FilesListMessage flm = new FilesListMessage();
+            Files.list(Paths.get(Server.serverStoragePath + username + "/"))
+                    .filter(p -> !Files.isDirectory(p))
+                    .map(p -> new FileInfo(p.getFileName().toString()))
+                    .forEach(flm::addFileInfo);
+            ctx.writeAndFlush(flm);
         }
     }
 

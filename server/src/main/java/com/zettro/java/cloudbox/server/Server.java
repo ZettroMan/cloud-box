@@ -34,6 +34,7 @@ public class Server {
 //                    .childOption(ChannelOption.SO_KEEPALIVE, true);
             ChannelFuture future = b.bind(8189).sync();
             future.channel().closeFuture().sync();
+            System.out.println("Сервер запущен");
         } finally {
             mainGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
