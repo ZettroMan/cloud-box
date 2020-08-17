@@ -1,14 +1,10 @@
 package com.zettro.java.cloudbox.client;
 
-import com.sun.javaws.IconUtil;
-import com.sun.javaws.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import javax.sound.midi.ControllerEventListener;
 
 public class CloudBoxClient extends Application {
     public final static String clientStoragePath = "C:/_Study/CloudBox/client_storage/";
@@ -19,6 +15,8 @@ public class CloudBoxClient extends Application {
         Parent root = loader.load();
         MainController mc = loader.getController();
         primaryStage.setTitle("Simple cloud box client");
+        primaryStage.setMinWidth(1100);
+        primaryStage.setMinHeight(600);
         primaryStage.setScene(new Scene(root));
         primaryStage.setOnHidden(e-> mc.shutdown());
         primaryStage.show();

@@ -6,11 +6,18 @@ public class AuthRequest extends AbstractMessage {
 
     private final String username;
 
-    public AuthRequest(String username) {
+    private final String password;
+
+    public AuthRequest(String username, String password) {
         this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

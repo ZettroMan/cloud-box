@@ -6,12 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+
+import org.apache.log4j.Logger;
 
 public class MainController implements Initializable {
 
@@ -24,25 +26,27 @@ public class MainController implements Initializable {
     @FXML
     public TextField tfServerPort;
     @FXML
-    public ListView localFilesList;
-    @FXML
-    public ListView remoteFilesList;
-    @FXML
     public Button btnConnect;
     @FXML
-    public TextField tfLocalPath;
+    VBox localPanel, remotePanel;
 
+    LocalPanelController lpc;
+    RemotePanelController rpc;
     private boolean authPassed = false;
     private FileOutputStream fos = null;
     private int chunkCounter = 0;
     ConfirmationMessage confirmationMessage = new ConfirmationMessage();
     FilesListRequest filesListRequest = new FilesListRequest();
     private boolean transferMode = false;
+    Logger console = Logger.getLogger("console");
+    Logger debug = Logger.getLogger("debug");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         restoreSettings();
-        refreshLocalFilesList();
+        lpc = (LocalPanelController) localPanel.getProperties().get("ctrl");
+        rpc = (RemotePanelController) remotePanel.getProperties().get("ctrl");
+        lpc.update();
     }
 
     private void restoreSettings() {
@@ -72,32 +76,11 @@ public class MainController implements Initializable {
         }
     }
 
-    public void refreshLocalFilesList() {
-        Platform.runLater(() -> {
-            try {
-                localFilesList.getItems().clear();
-                Files.list(Paths.get(CloudBoxClient.clientStoragePath))
-                        .filter(p -> !Files.isDirectory(p))
-                        .map(p -> p.getFileName().toString())
-                        .forEach(o -> localFilesList.getItems().add(o));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public void refreshRemoteFilesList(FilesListMessage flm) {
-        Platform.runLater(() -> {
-            remoteFilesList.getItems().clear();
-            flm.getFiles().stream().map(FileInfo::getFileName).forEach(remoteFilesList.getItems()::add);
-        });
-    }
-
     public void sendFile() throws IOException {
-        if (localFilesList.getSelectionModel().getSelectedItem() != null) {
+        if (lpc.filesTable.getSelectionModel().getSelectedItem() != null) {
             ChunkedFileMessage cfm = new ChunkedFileMessage(
                     Paths.get(CloudBoxClient.clientStoragePath +
-                            localFilesList.getSelectionModel().getSelectedItem()), 1024 * 1024);
+                            lpc.filesTable.getSelectionModel().getSelectedItem()), 1024 * 1024);
             Network.sendMsg(cfm);
             while (cfm.readNextChunk() != -1) {
                 Network.sendMsg(cfm);
@@ -108,16 +91,9 @@ public class MainController implements Initializable {
     }
 
     public void downloadFile() {
-        if (remoteFilesList.getSelectionModel().getSelectedItem() != null) {
-            Network.sendMsg(new FileRequest(remoteFilesList.getSelectionModel().getSelectedItem().toString()));
+        if (rpc.filesTable.getSelectionModel().getSelectedItem() != null) {
+            Network.sendMsg(new FileRequest(rpc.filesTable.getSelectionModel().getSelectedItem().toString()));
         }
-    }
-
-    public void pressOnLocalUpBtn(ActionEvent actionEvent) {
-    }
-
-    public void pressOnLocalRefreshBtn(ActionEvent actionEvent) {
-        refreshLocalFilesList();
     }
 
     public void pressOnConnectBtn(ActionEvent actionEvent) {
@@ -130,24 +106,37 @@ public class MainController implements Initializable {
                 alert.show();
                 return;
             }
-
             // запускаем поток, обрабатывающий входящие сообщения
             Thread t = new Thread(() -> {
                 try {
                     while (true) {
-                        if (!transferMode & authPassed) Network.sendMsg(filesListRequest);
-                        refreshLocalFilesList();
+                        //if (!transferMode & authPassed) Network.sendMsg(filesListRequest);
+                        lpc.update();
                         AbstractMessage am = Network.readObject();
-                        // System.out.println("Message received");
                         if (am instanceof AuthAnswer) {
-                            System.out.println("AuthAnswer received");
+                            debug.info("AuthAnswer received");
                             AuthAnswer authAnswer = (AuthAnswer) am;
                             if (authAnswer.getAuthResult() == AuthAnswer.AuthResult.PASSED) {
                                 authPassed = true;
-                                System.out.println("Authentication passed");
+                                console.info("Успешная аутентификация");
+                                Platform.runLater(() -> {
+                                    btnConnect.setText("Отключиться");
+                                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Успешная аутентификация", ButtonType.OK);
+                                    alert.showAndWait();
+                                });
+                                Network.sendMsg(filesListRequest);
                                 continue;
                             }
-                            System.out.println("Authentication failed");
+                            authPassed = false;
+                            console.info("Неудачная аутентификация");
+                            Platform.runLater(() -> {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Указаны неверные данные для аутентификации", ButtonType.OK);
+                                alert.showAndWait();
+                            });
+                            btnConnect.setText("Подключиться");
+                            rpc.filesTable.getItems().clear();
+                            Network.stop(); // отключаем соединение полностью
+                            break;
                         }
                         // пока не пройдена аутентификация - игнорируем сообщения от сервера, отличные от AuthAnswer
                         if (!authPassed) continue;
@@ -166,7 +155,7 @@ public class MainController implements Initializable {
                                     chunkCounter++;
                                 }
                             } else {
-                                fos.flush();
+                                //fos.flush();  - вероятно это излишне
                                 fos.close();
                                 fos = null;
                                 transferMode = false;
@@ -176,13 +165,13 @@ public class MainController implements Initializable {
 
                         if (am instanceof FilesListMessage) {
                             FilesListMessage flm = (FilesListMessage) am;
-                            refreshRemoteFilesList(flm);
+                            rpc.refreshRemoteFilesList(flm);
                             continue;
                         }
 
                         if (am instanceof ErrorMessage) {
                             ErrorMessage em = (ErrorMessage) am;
-                            System.out.println(em.getMessage());
+                            debug.error(em.getMessage());
                             transferMode = false;
                             continue;
                         }
@@ -197,20 +186,20 @@ public class MainController implements Initializable {
             });
             t.setDaemon(true);
             t.start();
-            btnConnect.textProperty().setValue("Отключиться");
             // посылаем запрос на аутентификацию
-            Network.sendMsg(new AuthRequest(tfUsername.getText()));
+            Network.sendMsg(new AuthRequest(tfUsername.getText(), tfPassword.getText()));
 
         } else {
             authPassed = false;
-            btnConnect.textProperty().setValue("Соединиться");
+            btnConnect.setText("Подключиться");
+            rpc.filesTable.getItems().clear();
             Network.stop();
         }
     }
 
     public void pressOnCopyBtn(ActionEvent actionEvent) {
         if (!authPassed) return;
-        if (localFilesList.isFocused()) {
+        if (lpc.filesTable.isFocused()) {
             try {
                 sendFile();
             } catch (IOException e) {
@@ -218,7 +207,7 @@ public class MainController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Не удалось передать файл", ButtonType.OK);
                 alert.show();
             }
-        } else if (remoteFilesList.isFocused()) {
+        } else if (rpc.filesTable.isFocused()) {
             downloadFile();
         }
     }
@@ -228,13 +217,13 @@ public class MainController implements Initializable {
         // some code
     }
 
-    public void shutdown() {
-        saveSettings();
-        System.out.println("Settings saved!");
-        Platform.exit();
+    public void pressOnMkDirBtn(ActionEvent actionEvent) {
     }
 
-    public void pressOnMkDirBtn(ActionEvent actionEvent) {
+    public void shutdown() {
+        saveSettings();
+        console.info("Настройки сохранены!");
+        Platform.exit();
     }
 
     public void btnExitAction(ActionEvent actionEvent) {

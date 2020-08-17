@@ -7,6 +7,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Semaphore;
 
@@ -16,10 +17,13 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     private FileOutputStream fos = null;
     private int chunkCounter = 0;
     private boolean transferMode = false;
+    private Path currentPath;
     Semaphore semaphore = new Semaphore(1);
 
     public MainHandler(String username) {
         this.username = username;
+        currentPath = Paths.get(Server.serverStoragePath, username);
+
     }
 
     @Override
@@ -40,13 +44,13 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                 return;
             }
             FileRequest fr = (FileRequest) msg;
-            String filename = Server.serverStoragePath + username + "/" + fr.getFileName();
-            if (Files.exists(Paths.get(filename)) && (!Files.isDirectory(Paths.get(filename)))) {
+            Path filePath = Paths.get(currentPath.toString(), fr.getFileName());
+            if (Files.exists(filePath) && (!Files.isDirectory(filePath))) {
                 semaphore = new Semaphore(1);
                 transferMode = true;
                 new Thread(() -> {
                     try {
-                        ChunkedFileMessage cfm = new ChunkedFileMessage(Paths.get(filename), 1024 * 1024);
+                        ChunkedFileMessage cfm = new ChunkedFileMessage(filePath, 1024 * 1024);
                         chunkCounter = 0;
                         semaphore.acquire();
                         ctx.writeAndFlush(cfm); // сначала создаем файл (bytesRead == 0)
@@ -79,14 +83,14 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             ChunkedFileMessage cfm = (ChunkedFileMessage) msg;
             if (cfm.getBytesRead() != -1) {
                 if (cfm.getBytesRead() == 0) {
-                    fos = new FileOutputStream(Server.serverStoragePath + username + "/" + cfm.getFileName());
+                    fos = new FileOutputStream(currentPath.toString() + "/" + cfm.getFileName());
                     chunkCounter = 0;
                 } else {
                     chunkCounter++;
                     fos.write(cfm.getData(), 0, cfm.getBytesRead());
                 }
             } else {
-                fos.flush();
+                // fos.flush(); - скорее всего это лишнее
                 fos.close();
                 fos = null;
             }
@@ -97,12 +101,23 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                 return;
             }
             FilesListMessage flm = new FilesListMessage();
-            Files.list(Paths.get(Server.serverStoragePath + username + "/"))
-                    .filter(p -> !Files.isDirectory(p))
-                    .map(p -> new FileInfo(p.getFileName().toString()))
-                    .forEach(flm::addFileInfo);
+            Files.list(currentPath)
+                    .map(FileInfo::new).forEach(flm::addFileInfo);
             ctx.writeAndFlush(flm);
         }
+        if (msg instanceof TraverseToFolderMessage) {
+            if (transferMode) {
+                System.out.println("File transfer in progress. Request ignored!");
+                return;
+            }
+            TraverseToFolderMessage ttfm = (TraverseToFolderMessage) msg;
+            FilesListMessage flm = new FilesListMessage();
+            currentPath = currentPath.resolve(Paths.get(ttfm.getFoldername()));
+            Files.list(currentPath)
+                    .map(FileInfo::new).forEach(flm::addFileInfo);
+            ctx.writeAndFlush(flm);
+        }
+
     }
 
     @Override

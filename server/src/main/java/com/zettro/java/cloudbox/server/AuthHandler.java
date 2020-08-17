@@ -25,11 +25,20 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
         if (msg instanceof AuthRequest) {
             AuthRequest authRequest = (AuthRequest) msg;
             String username = authRequest.getUsername();
+            String password = authRequest.getPassword();
             if(username.equals("")) {
                 System.out.println("Invalid credentials. Try again.");
                 ctx.writeAndFlush(new AuthAnswer(AuthAnswer.AuthResult.FAILED));
                 return;
             }
+            // сначала проверяем по базе
+            if (!SqlClient.isRegisteredUser(username, password)) {
+                System.out.println("Invalid credentials. Try again.");
+                ctx.writeAndFlush(new AuthAnswer(AuthAnswer.AuthResult.FAILED));
+                return;
+            }
+
+            // проверяем наличие локального каталога
             String userPath = Server.serverStoragePath + username;
             // пока заглушка для аутентификации - есть каталог на сервере - значит success!)
             if (Files.exists(Paths.get(userPath)) && Files.isDirectory(Paths.get(userPath))) {

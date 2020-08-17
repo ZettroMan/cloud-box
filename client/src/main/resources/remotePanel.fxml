@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.zettro.java.cloudbox.client.RemotePanelController">
+    <HBox spacing="2.0">
+        <Button onAction="#pressOnRemoteUpBtn" text=" ↑ "/>
+        <TextField fx:id="tfRemotePath" editable="false" focusTraversable="false" HBox.hgrow="ALWAYS"/>
+        <Button onAction="#pressOnRemoteRefreshBtn" text="Обновить"/>
+    </HBox>
+    <TableView fx:id="filesTable" VBox.vgrow="ALWAYS" onMouseClicked="#mouseClickAction"/>
+    <HBox.margin>
+        <Insets/>
+    </HBox.margin>
+    <padding>
+        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+    </padding>
+    <properties>
+        <ctrl><fx:reference source="controller"/></ctrl>
+    </properties>
+</VBox>

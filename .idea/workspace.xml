@@ -4,26 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="Second commit">
-      <change afterPath="$PROJECT_DIR$/client/Settings.cbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/ProgramSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/TransferController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/transfer.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FilesListMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FilesListRequest.java" afterDir="false" />
+    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="17.08.2020">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/LocalPanelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/RemotePanelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/localPanel.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/remotePanel.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/TraverseToFolderMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/cloud-box.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/SqlClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/log4j.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Settings.cbx" beforeDir="false" afterPath="$PROJECT_DIR$/client/Settings.cbx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthAnswer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/ChunkedFileMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/ChunkedFileMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/ConfirmationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/ConfirmationMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/ErrorMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/AuthHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/AuthHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/Server.java" afterDir="false" />
@@ -56,7 +56,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.2\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -70,15 +70,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.34367815" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\client\src\main\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.zettro.java.cloudbox.common" />
+      <recent name="com.zettro.java.cloudbox.client" />
       <recent name="com.zettro.java.cloudbox.server" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -121,8 +125,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.CloudBoxClient" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597519710652</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Second commit">
+      <created>1597520856994</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1597520856994</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,29 +212,30 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="First commit" />
     <MESSAGE value="Second commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second commit" />
+    <MESSAGE value="17.08.2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="17.08.2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="6" key="#Project_Structure" timestamp="1597001405981">
+    <state x="249" y="6" key="#Project_Structure" timestamp="1597610192365">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="249" y="6" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1597001405981" />
+    <state x="249" y="6" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1597610192365" />
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596667631974">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1596667631974" />
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1596913074093">
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1597610397209">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1596913074093" />
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597610397209" />
     <state x="524" y="135" key="#xdebugger.evaluate" timestamp="1597162053270">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="524" y="135" key="#xdebugger.evaluate/0.0.1536.864@0.0.1536.864" timestamp="1597162053270" />
-    <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1597520249269">
+    <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1597657607395">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597520249269" />
+    <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597657607395" />
     <state x="548" y="187" key="FileChooserDialogImpl" timestamp="1596663495898">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -240,42 +252,46 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="529" y="129" key="Github.UntrackedFilesDialog/0.0.1536.864@0.0.1536.864" timestamp="1596666705750" />
-    <state width="1493" height="277" key="GridCell.Tab.0.bottom" timestamp="1597174171916">
+    <state width="1493" height="302" key="GridCell.Tab.0.bottom" timestamp="1597657607752">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597174171916" />
-    <state width="1493" height="277" key="GridCell.Tab.0.center" timestamp="1597174171915">
+    <state width="1493" height="302" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597657607752" />
+    <state width="1493" height="302" key="GridCell.Tab.0.center" timestamp="1597657607752">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597174171915" />
-    <state width="1493" height="277" key="GridCell.Tab.0.left" timestamp="1597174171915">
+    <state width="1493" height="302" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597657607752" />
+    <state width="1493" height="302" key="GridCell.Tab.0.left" timestamp="1597657607752">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597174171915" />
-    <state width="1493" height="277" key="GridCell.Tab.0.right" timestamp="1597174171916">
+    <state width="1493" height="302" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597657607752" />
+    <state width="1493" height="302" key="GridCell.Tab.0.right" timestamp="1597657607752">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597174171916" />
+    <state width="1493" height="302" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597657607752" />
+    <state x="299" y="87" key="Maven.ArtifactSearchDialog" timestamp="1597593954535">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="299" y="87" key="Maven.ArtifactSearchDialog/0.0.1536.864@0.0.1536.864" timestamp="1597593954535" />
     <state x="555" y="66" key="SettingsEditor" timestamp="1596865430397">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="555" y="66" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1596865430397" />
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597519723211">
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597520868698">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597519723211" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597520868698" />
     <state x="407" y="161" width="1035" height="543" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1597008390237">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="407" y="161" width="1035" height="543" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1536.864@0.0.1536.864" timestamp="1597008390237" />
-    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597519747873">
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597566802032">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1597519747873" />
-    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597161749056">
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1597566802032" />
+    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597576876482">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1597161749056" />
+    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1597576876482" />
     <state x="570" y="338" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1596666554415">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -290,14 +306,6 @@
     <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1596908849907" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="cfm.getBytesRead()" />

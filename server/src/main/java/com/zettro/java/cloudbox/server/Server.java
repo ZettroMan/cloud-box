@@ -16,7 +16,7 @@ public class Server {
     public final static String serverStoragePath = "C:/_Study/CloudBox/server_storage/";
 
     public void run() throws Exception {
-        EventLoopGroup mainGroup = new NioEventLoopGroup();
+        EventLoopGroup mainGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
@@ -33,11 +33,13 @@ public class Server {
                     });
 //                    .childOption(ChannelOption.SO_KEEPALIVE, true);
             ChannelFuture future = b.bind(8189).sync();
-            future.channel().closeFuture().sync();
+            SqlClient.connect();
             System.out.println("Сервер запущен");
+            future.channel().closeFuture().sync();
         } finally {
             mainGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
+            SqlClient.disconnect();
         }
     }
 
