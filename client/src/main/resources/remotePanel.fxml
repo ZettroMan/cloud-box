@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox alignment="CENTER"
-      xmlns:fx="http://javafx.com/fxml/1"
+      xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.zettro.java.cloudbox.client.RemotePanelController">
     <HBox spacing="2.0">
         <Button onAction="#pressOnRemoteUpBtn" text=" ↑ "/>

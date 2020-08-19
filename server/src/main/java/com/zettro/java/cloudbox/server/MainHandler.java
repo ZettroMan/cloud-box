@@ -3,6 +3,7 @@ package com.zettro.java.cloudbox.server;
 import com.zettro.java.cloudbox.common.*;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.apache.log4j.Logger;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,29 +19,24 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     private int chunkCounter = 0;
     private boolean transferMode = false;
     private Path currentPath;
+    private final Path rootPath;
     Semaphore semaphore = new Semaphore(1);
+
+    Logger stdLogger = Server.stdLogger;
+    String serverStoragePath = Server.serverStoragePath;
 
     public MainHandler(String username) {
         this.username = username;
-        currentPath = Paths.get(Server.serverStoragePath, username);
+        rootPath = Paths.get(serverStoragePath, username);
+        currentPath = rootPath;
 
-    }
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("Client connected.");
-    }
-
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("Client disconnected.");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof FileRequest) {
             if (transferMode) {
-                System.out.println("File transfer in progress. Request ignored!");
+                stdLogger.info("File transfer in progress. Request ignored!");
                 return;
             }
             FileRequest fr = (FileRequest) msg;
@@ -69,7 +65,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                     transferMode = false;
                 }).start();
             } else {
-                System.out.println("File not found or it is a directory");
+                stdLogger.info("File not found or it is a directory");
                 ctx.writeAndFlush(new ErrorMessage("File not found or it is a directory..."));
             }
         }
@@ -83,7 +79,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             ChunkedFileMessage cfm = (ChunkedFileMessage) msg;
             if (cfm.getBytesRead() != -1) {
                 if (cfm.getBytesRead() == 0) {
-                    fos = new FileOutputStream(currentPath.toString() + "/" + cfm.getFileName());
+                    fos = new FileOutputStream(currentPath.toString() + "\\" + cfm.getFileName());
                     chunkCounter = 0;
                 } else {
                     chunkCounter++;
@@ -97,22 +93,25 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         }
         if (msg instanceof FilesListRequest) {
             if (transferMode) {
-                System.out.println("File transfer in progress. Request ignored!");
+                stdLogger.info("File transfer in progress. Request ignored!");
                 return;
             }
-            FilesListMessage flm = new FilesListMessage();
+            FilesListMessage flm = new FilesListMessage(rootPath.relativize(currentPath).toString());
             Files.list(currentPath)
                     .map(FileInfo::new).forEach(flm::addFileInfo);
             ctx.writeAndFlush(flm);
         }
         if (msg instanceof TraverseToFolderMessage) {
             if (transferMode) {
-                System.out.println("File transfer in progress. Request ignored!");
+                stdLogger.info("File transfer in progress. Request ignored!");
                 return;
             }
             TraverseToFolderMessage ttfm = (TraverseToFolderMessage) msg;
-            FilesListMessage flm = new FilesListMessage();
-            currentPath = currentPath.resolve(Paths.get(ttfm.getFoldername()));
+            // если находимся в самом верхнем каталоге - то выше уже не поднимаемся
+            if(ttfm.getFoldername().equals("..") && currentPath.equals(rootPath)) return;
+
+            currentPath = currentPath.resolve(Paths.get(ttfm.getFoldername())).normalize().toAbsolutePath();
+            FilesListMessage flm = new FilesListMessage(rootPath.relativize(currentPath).toString());
             Files.list(currentPath)
                     .map(FileInfo::new).forEach(flm::addFileInfo);
             ctx.writeAndFlush(flm);

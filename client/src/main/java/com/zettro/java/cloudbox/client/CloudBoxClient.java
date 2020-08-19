@@ -5,9 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 public class CloudBoxClient extends Application {
-    public final static String clientStoragePath = "C:/_Study/CloudBox/client_storage/";
+    public final static String clientStoragePath = "C:\\_Study\\CloudBox\\client_storage";
+    public final static Logger stdLogger = Logger.getRootLogger();
 
     @Override
     public void start(Stage primaryStage) throws Exception{

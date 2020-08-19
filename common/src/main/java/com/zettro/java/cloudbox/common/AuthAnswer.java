@@ -6,12 +6,18 @@ public class AuthAnswer extends AbstractMessage {
     public enum AuthResult {PASSED, FAILED}
 
     AuthResult authResult;
+    String message;
 
-    public AuthAnswer(AuthResult authResult) {
+    public AuthAnswer(AuthResult authResult, String message) {
         this.authResult = authResult;
+        this.message = message;
     }
 
     public AuthResult getAuthResult() {
         return authResult;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

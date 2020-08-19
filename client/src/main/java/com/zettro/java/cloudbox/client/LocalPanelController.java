@@ -16,6 +16,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.DosFileAttributes;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -61,7 +62,6 @@ public class LocalPanelController implements Initializable {
         fileDateColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLastModified().format(dtf)));
         fileDateColumn.setPrefWidth(150);
 
-
         filesTable.getColumns().addAll(fileNameColumn, fileSizeColumn, fileDateColumn);
         filesTable.getSortOrder().add(fileSizeColumn);
 
@@ -71,7 +71,7 @@ public class LocalPanelController implements Initializable {
         }
         disksBox.getSelectionModel().select(0);
 
-        refreshFilesList(Paths.get("."));
+        refreshFilesList(Paths.get(CloudBoxClient.clientStoragePath));
     }
 
     public void update() {
@@ -83,7 +83,14 @@ public class LocalPanelController implements Initializable {
             try {
                 filesTable.getItems().clear();
                 tfLocalPath.setText(path.normalize().toAbsolutePath().toString());
-                filesTable.getItems().addAll(Files.list(path).map(FileInfo::new).collect(Collectors.toList()));
+                filesTable.getItems().addAll(Files.list(path).filter(path1 -> {
+                    try {
+                        return (!Files.readAttributes(path1, DosFileAttributes.class).isHidden());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return false;
+                }).map(FileInfo::new).collect(Collectors.toList()));
                 filesTable.sort();
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Не удалось обновить локальный список файлов", ButtonType.OK);
@@ -105,10 +112,10 @@ public class LocalPanelController implements Initializable {
 
     public void mouseClickAction(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2) {
+            if(filesTable.getSelectionModel().getSelectedItem() == null) return;
+            if(filesTable.getSelectionModel().getSelectedItem().getSize() != -1L) return;
             Path path = Paths.get(tfLocalPath.getText()).resolve(filesTable.getSelectionModel().getSelectedItem().getFilename());
-            if (Files.isDirectory(path)) {
-                refreshFilesList(path);
-            }
+            refreshFilesList(path);
         }
     }
 }

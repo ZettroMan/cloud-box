@@ -11,9 +11,12 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 
+import org.apache.log4j.Logger;
+
 public class Server {
 
-    public final static String serverStoragePath = "C:/_Study/CloudBox/server_storage/";
+    public final static String serverStoragePath = "C:\\_Study\\CloudBox\\server_storage";
+    public final static Logger stdLogger = Logger.getRootLogger();
 
     public void run() throws Exception {
         EventLoopGroup mainGroup = new NioEventLoopGroup(1);
@@ -34,7 +37,7 @@ public class Server {
 //                    .childOption(ChannelOption.SO_KEEPALIVE, true);
             ChannelFuture future = b.bind(8189).sync();
             SqlClient.connect();
-            System.out.println("Сервер запущен");
+            stdLogger.info("Сервер запущен");
             future.channel().closeFuture().sync();
         } finally {
             mainGroup.shutdownGracefully();

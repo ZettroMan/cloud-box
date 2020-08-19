@@ -6,7 +6,7 @@
 
 <VBox alignment="CENTER" prefHeight="640.0" prefWidth="960.0" spacing="2.0"
       style="-fx-background-color: linear-gradient(#fff 0%, #eee 10%, #ddd 90%, #bbb 100%);"
-      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.zettro.java.cloudbox.client.MainController">
     <MenuBar VBox.vgrow="NEVER">
         <Menu text="Файл">
@@ -14,22 +14,27 @@
         </Menu>
     </MenuBar>
     <HBox spacing="2.0" VBox.vgrow="NEVER">
-        <TextField fx:id="tfUsername" focusTraversable="false" prefWidth="150.0" promptText="Логин"
+        <TextField fx:id="tfUsername" focusTraversable="false" prefWidth="100.0" promptText="Логин"
                    HBox.hgrow="ALWAYS"/>
-        <PasswordField fx:id="tfPassword" prefWidth="100.0" promptText="Пароль" HBox.hgrow="ALWAYS"/>
-        <TextField fx:id="tfServerAddress" focusTraversable="false" prefWidth="250.0" promptText="Адрес сервера"
+        <PasswordField fx:id="tfPassword" prefWidth="80.0" promptText="Пароль" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="tfServerAddress" focusTraversable="false" prefWidth="230.0" promptText="Адрес сервера"
                    HBox.hgrow="ALWAYS"/>
         <TextField fx:id="tfServerPort" focusTraversable="false" maxWidth="-Infinity" minWidth="-Infinity"
                    prefWidth="60.0" promptText="Порт" HBox.hgrow="ALWAYS"/>
+        <CheckBox fx:id="cbNewUser" text="Новый пользователь" HBox.hgrow="NEVER" >
+            <padding>
+                <Insets left="7.0" right="7.0"/>
+            </padding>
+        </CheckBox>
         <Button fx:id="btnConnect" minWidth="-Infinity" onAction="#pressOnConnectBtn" prefWidth="150.0"
                 text="Подключиться"/>
     </HBox>
     <Separator/>
     <SplitPane VBox.vgrow="ALWAYS">
         <fx:include fx:id="localPanel" source="localPanel.fxml" HBox.hgrow="ALWAYS" minWidth="400" minHeight="300"/>
-        <fx:include fx:id="remotePanel" source="remotePanel.fxml" HBox.hgrow="ALWAYS"  minWidth="400" minHeight="300"/>
+        <fx:include fx:id="remotePanel" source="remotePanel.fxml" HBox.hgrow="ALWAYS" minWidth="400" minHeight="300"/>
     </SplitPane>
-    <Separator />
+    <Separator/>
     <HBox spacing="5.0" VBox.vgrow="NEVER">
         <Button focusTraversable="false" maxWidth="Infinity" onAction="#pressOnCopyBtn" text="Копировать"
                 HBox.hgrow="ALWAYS"/>

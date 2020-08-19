@@ -34,4 +34,13 @@ public class SqlClient {
         }
         return false;
     }
+
+    public static void createUser(String username, String password) throws Exception {
+        String query = String.format("insert into clients (login, password) values ('%s', '%s')", username, password);
+        try {
+           statement.execute(query);
+        } catch (SQLException e) {
+            throw new Exception("Произошла ошибка при создании нового пользователя");
+        }
+    }
 }
