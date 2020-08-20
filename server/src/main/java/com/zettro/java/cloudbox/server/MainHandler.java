@@ -41,32 +41,17 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             }
             FileRequest fr = (FileRequest) msg;
             Path filePath = Paths.get(currentPath.toString(), fr.getFileName());
-            if (Files.exists(filePath) && (!Files.isDirectory(filePath))) {
-                semaphore = new Semaphore(1);
-                transferMode = true;
-                new Thread(() -> {
-                    try {
-                        ChunkedFileMessage cfm = new ChunkedFileMessage(filePath, 1024 * 1024);
-                        chunkCounter = 0;
-                        semaphore.acquire();
-                        ctx.writeAndFlush(cfm); // сначала создаем файл (bytesRead == 0)
-                        semaphore.acquire();
-                        // пока не будет прочитан конец файла последовательно читаем файл в буффер передаем через сериализацию                    int chunkCounter = 0;
-                        while (cfm.readNextChunk() != -1) {
-                            ctx.writeAndFlush(cfm);
-                            chunkCounter++;
-                            semaphore.acquire();
-                        }
-                        ctx.writeAndFlush(cfm); // передаем конец файла});
-                        semaphore.acquire();
-                    } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    transferMode = false;
-                }).start();
-            } else {
-                stdLogger.info("File not found or it is a directory");
-                ctx.writeAndFlush(new ErrorMessage("File not found or it is a directory..."));
+            FileRequest.ActionType actionType = fr.getActionType();
+            switch(actionType) {
+                case DOWNLOAD:
+                    onDownloadReceived(ctx, filePath);
+                    break;
+                case DELETE:
+                    onDeleteReceived(ctx, filePath);
+                    break;
+                case CREATE_DIR:
+                    onCreateDirReceived(ctx, filePath);
+                    break;
             }
         }
 
@@ -96,10 +81,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                 stdLogger.info("File transfer in progress. Request ignored!");
                 return;
             }
-            FilesListMessage flm = new FilesListMessage(rootPath.relativize(currentPath).toString());
-            Files.list(currentPath)
-                    .map(FileInfo::new).forEach(flm::addFileInfo);
-            ctx.writeAndFlush(flm);
+            sendFileList(ctx);
         }
         if (msg instanceof TraverseToFolderMessage) {
             if (transferMode) {
@@ -108,15 +90,73 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             }
             TraverseToFolderMessage ttfm = (TraverseToFolderMessage) msg;
             // если находимся в самом верхнем каталоге - то выше уже не поднимаемся
-            if(ttfm.getFoldername().equals("..") && currentPath.equals(rootPath)) return;
-
+            if (ttfm.getFoldername().equals("..") && currentPath.equals(rootPath)) return;
             currentPath = currentPath.resolve(Paths.get(ttfm.getFoldername())).normalize().toAbsolutePath();
-            FilesListMessage flm = new FilesListMessage(rootPath.relativize(currentPath).toString());
-            Files.list(currentPath)
-                    .map(FileInfo::new).forEach(flm::addFileInfo);
-            ctx.writeAndFlush(flm);
+            sendFileList(ctx);
         }
 
+    }
+
+    private void sendFileList(ChannelHandlerContext ctx) throws IOException {
+        FilesListMessage flm = new FilesListMessage(rootPath.relativize(currentPath).toString());
+        Files.list(currentPath)
+                .map(FileInfo::new).forEach(flm::addFileInfo);
+        ctx.writeAndFlush(flm);
+    }
+
+    private void onDeleteReceived(ChannelHandlerContext ctx, Path filePath) {
+        try {
+            Files.delete(filePath);
+            sendFileList(ctx);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ctx.writeAndFlush(new ErrorMessage("Не удалось удалить файл"));
+        }
+    }
+
+    private void onCreateDirReceived(ChannelHandlerContext ctx, Path filePath) {
+        try {
+            Files.createDirectory(filePath);
+            sendFileList(ctx);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ctx.writeAndFlush(new ErrorMessage("Не удалось создать каталог"));
+        }
+    }
+
+    private void onDownloadReceived(ChannelHandlerContext ctx, Path filePath) {
+        if (Files.exists(filePath) && (!Files.isDirectory(filePath))) {
+            semaphore = new Semaphore(1);
+            transferMode = true;
+            new Thread(() -> {
+                try {
+                    ChunkedFileMessage cfm = new ChunkedFileMessage(filePath, 1024 * 1024);
+                    chunkCounter = 0;
+                    semaphore.acquire();
+                    ctx.writeAndFlush(cfm); // сначала создаем файл (bytesRead == 0)
+                    semaphore.acquire();
+                    // пока не будет прочитан конец файла последовательно читаем файл в буффер передаем через сериализацию                    int chunkCounter = 0;
+                    while (cfm.readNextChunk() != -1) {
+                        ctx.writeAndFlush(cfm);
+                        chunkCounter++;
+                        semaphore.acquire();
+                    }
+                    ctx.writeAndFlush(cfm); // передаем конец файла});
+                    semaphore.acquire();
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+                transferMode = false;
+            }).start();
+        } else {
+            stdLogger.info("File not found or it is a directory");
+            ctx.writeAndFlush(new ErrorMessage("File not found or it is a directory..."));
+        }
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        stdLogger.info("Клиент отключился.");
     }
 
     @Override

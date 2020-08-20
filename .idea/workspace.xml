@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="17.08.2020">
+    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="20.08.2020 - 1">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Settings.cbx" beforeDir="false" afterPath="$PROJECT_DIR$/client/Settings.cbx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/LocalPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/LocalPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/RemotePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/RemotePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/remotePanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/remotePanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthAnswer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/AuthRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FilesListMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FilesListMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/cloud-box.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/cloud-box.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/AuthHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/AuthHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/SqlClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/SqlClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/log4j.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +53,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -184,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597657745971</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="17.08.2020">
+      <created>1597866523109</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1597866523110</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,7 +211,8 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Second commit" />
     <MESSAGE value="17.08.2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="17.08.2020" />
+    <MESSAGE value="20.08.2020 - 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="20.08.2020 - 1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="249" y="6" key="#Project_Structure" timestamp="1597827218377">
@@ -231,10 +227,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="543" y="234" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864@0.0.1536.864" timestamp="1597819701292" />
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1597833976154">
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1597915230085">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597833976154" />
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597915230085" />
     <state x="297" y="257" width="941" height="349" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1597862669579">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -243,10 +239,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="524" y="135" key="#xdebugger.evaluate/0.0.1536.864@0.0.1536.864" timestamp="1597863695154" />
-    <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1597866456558">
+    <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1597916793537">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597866456558" />
+    <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597916793537" />
     <state width="692" height="466" key="DebuggerActiveHint" timestamp="1597822690310">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -267,26 +263,30 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="529" y="129" key="Github.UntrackedFilesDialog/0.0.1536.864@0.0.1536.864" timestamp="1596666705750" />
-    <state width="1493" height="189" key="GridCell.Tab.0.bottom" timestamp="1597866456842">
+    <state width="1493" height="277" key="GridCell.Tab.0.bottom" timestamp="1597866560015">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597866456842" />
-    <state width="1493" height="189" key="GridCell.Tab.0.center" timestamp="1597866456841">
+    <state width="1493" height="277" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597866560015" />
+    <state width="1493" height="277" key="GridCell.Tab.0.center" timestamp="1597866560013">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597866456841" />
-    <state width="1493" height="189" key="GridCell.Tab.0.left" timestamp="1597866456841">
+    <state width="1493" height="277" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597866560013" />
+    <state width="1493" height="277" key="GridCell.Tab.0.left" timestamp="1597866560013">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597866456841" />
-    <state width="1493" height="189" key="GridCell.Tab.0.right" timestamp="1597866456842">
+    <state width="1493" height="277" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597866560013" />
+    <state width="1493" height="277" key="GridCell.Tab.0.right" timestamp="1597866560014">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597866456842" />
+    <state width="1493" height="277" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597866560014" />
     <state x="299" y="87" key="Maven.ArtifactSearchDialog" timestamp="1597593954535">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="299" y="87" key="Maven.ArtifactSearchDialog/0.0.1536.864@0.0.1536.864" timestamp="1597593954535" />
+    <state x="584" y="366" key="ReplaceDuplicatesPrompt" timestamp="1597916325239">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="584" y="366" key="ReplaceDuplicatesPrompt/0.0.1536.864@0.0.1536.864" timestamp="1597916325239" />
     <state x="555" y="66" key="SettingsEditor" timestamp="1596865430397">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -295,10 +295,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.864@0.0.1536.864" timestamp="1597831736274" />
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597657760546">
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597866543337">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597657760546" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597866543337" />
     <state x="407" y="161" width="1035" height="543" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1597008390237">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -311,10 +311,14 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1597832823506" />
-    <state x="477" y="165" width="581" height="534" key="find.popup" timestamp="1597863916825">
+    <state x="499" y="204" key="extract.method.dialog" timestamp="1597916320051">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="477" y="165" width="581" height="534" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1597863916825" />
+    <state x="499" y="204" key="extract.method.dialog/0.0.1536.864@0.0.1536.864" timestamp="1597916320051" />
+    <state x="477" y="165" width="581" height="534" key="find.popup" timestamp="1597913785282">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="477" y="165" width="581" height="534" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1597913785282" />
     <state x="570" y="338" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1596666554415">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

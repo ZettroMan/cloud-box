@@ -10,7 +10,10 @@ import javafx.scene.layout.VBox;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
@@ -82,7 +85,7 @@ public class MainController implements Initializable {
 
     public void sendFile() throws IOException {
         if (lpc.filesTable.getSelectionModel().getSelectedItem() != null &&
-                (lpc.filesTable.getSelectionModel().getSelectedItem().getSize() != -1)) {
+                (lpc.filesTable.getSelectionModel().getSelectedItem().getSize() != -1L)) {
             ChunkedFileMessage cfm = new ChunkedFileMessage(Paths.get(lpc.tfLocalPath.getText(),
                     lpc.filesTable.getSelectionModel().getSelectedItem().getFilename()), 1024 * 1024);
             Network.sendMsg(cfm);
@@ -97,8 +100,9 @@ public class MainController implements Initializable {
 
     public void downloadFile() {
         if (rpc.filesTable.getSelectionModel().getSelectedItem() != null &&
-                (rpc.filesTable.getSelectionModel().getSelectedItem().getSize() != -1)) {
-            Network.sendMsg(new FileRequest(rpc.filesTable.getSelectionModel().getSelectedItem().getFilename()));
+                (rpc.filesTable.getSelectionModel().getSelectedItem().getSize() != -1L)) {
+            Network.sendMsg(new FileRequest(rpc.filesTable.getSelectionModel().getSelectedItem().getFilename(),
+                    FileRequest.ActionType.DOWNLOAD));
         }
     }
 
@@ -163,7 +167,7 @@ public class MainController implements Initializable {
                             ChunkedFileMessage cfm = (ChunkedFileMessage) am;
                             if (cfm.getBytesRead() != -1) {
                                 if (cfm.getBytesRead() == 0) {
-                                    fos = new FileOutputStream(lpc.tfLocalPath.getText() +"\\" + cfm.getFileName());
+                                    fos = new FileOutputStream(lpc.tfLocalPath.getText() + "\\" + cfm.getFileName());
                                     chunkCounter = 1;
                                 } else {
                                     fos.write(cfm.getData(), 0, cfm.getBytesRead());
@@ -224,7 +228,7 @@ public class MainController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Не удалось передать файл", ButtonType.OK);
-                alert.show();
+                alert.showAndWait();
             }
         } else if (rpc.filesTable.isFocused()) {
             downloadFile();
@@ -232,11 +236,71 @@ public class MainController implements Initializable {
     }
 
     public void pressOnDeleteBtn(ActionEvent actionEvent) {
-        if (!authPassed) return;
-        // some code
+        try {
+            if (lpc.filesTable.isFocused() &&
+                    (lpc.filesTable.getSelectionModel().getSelectedItem() != null)) {
+                Path pathToFile = Paths.get(lpc.tfLocalPath.getText(),
+                        lpc.filesTable.getSelectionModel().getSelectedItem().getFilename());
+                if ((lpc.filesTable.getSelectionModel().getSelectedItem().getSize() == -1L)) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Удаление каталогов пока не реализовано в целях безопасности))", ButtonType.OK);
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Удаление файла");
+                    alert.setHeaderText("Удалить файл?");
+                    alert.setContentText(pathToFile.toString());
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        Files.delete(pathToFile);
+                        lpc.update();
+                    }
+                }
+            } else if (authPassed && rpc.filesTable.isFocused() &&
+                    (rpc.filesTable.getSelectionModel().getSelectedItem() != null)) {
+                if ((rpc.filesTable.getSelectionModel().getSelectedItem().getSize() == -1L)) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Удаление каталогов пока не реализовано в целях безопасности))", ButtonType.OK);
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Удаление файла");
+                    alert.setHeaderText("Удалить файл?");
+                    alert.setContentText(rpc.filesTable.getSelectionModel().getSelectedItem().getFilename());
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        Network.sendMsg(new FileRequest(rpc.filesTable.getSelectionModel().getSelectedItem().getFilename(),
+                                FileRequest.ActionType.DELETE));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Не удалось удалить файл", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
+
     public void pressOnMkDirBtn(ActionEvent actionEvent) {
+        try {
+            TextInputDialog dialog = new TextInputDialog("");
+            dialog.setTitle("Создание каталога");
+            dialog.setHeaderText("Пожалуйста укажите имя каталога:");
+            dialog.setContentText("");
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                if (lpc.filesTable.isFocused()) {
+                    Files.createDirectory(Paths.get(lpc.tfLocalPath.getText(), result.get()));
+                    lpc.update();
+                } else if (rpc.filesTable.isFocused()) {
+                    Network.sendMsg(new FileRequest(rpc.filesTable.getSelectionModel().getSelectedItem().getFilename(),
+                            FileRequest.ActionType.CREATE_DIR));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Не удалось создать каталог", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     public void shutdown() {
