@@ -13,9 +13,9 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 
 import org.apache.log4j.Logger;
 
-public class Server {
+public class CloudBoxServer {
 
-    public final static String serverStoragePath = "C:\\_Study\\CloudBox\\server_storage";
+    public final static String serverStoragePath = "server_storage";
     public final static Logger stdLogger = Logger.getRootLogger();
 
     public void run() throws Exception {
@@ -47,6 +47,6 @@ public class Server {
     }
 
     public static void main(String[] args) throws Exception {
-        new Server().run();
+        new CloudBoxServer().run();
     }
 }

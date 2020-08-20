@@ -158,6 +158,8 @@ public class MainController implements Initializable {
                                     btnConnect.setText("Отключиться");
                                     cbNewUser.setSelected(false);
                                     Alert alert = new Alert(Alert.AlertType.INFORMATION, authAnswer.getMessage(), ButtonType.OK);
+                                    alert.setTitle("");
+                                    alert.setHeaderText("Добро пожаловать!");
                                     alert.showAndWait();
                                 });
                                 Network.sendMsg(filesListRequest);
@@ -169,11 +171,11 @@ public class MainController implements Initializable {
                             Platform.runLater(() -> {
                                 btnConnect.setText("Подключиться");
                                 Alert alert = new Alert(Alert.AlertType.INFORMATION, authAnswer.getMessage(), ButtonType.OK);
+                                alert.setTitle("");
+                                alert.setHeaderText("Ошибка аутентификации!");
                                 alert.showAndWait();
                             });
                             rpc.filesTable.getItems().clear();
-                            lpc.update();
-                            Network.stop(); // отключаем соединение полностью
                             break;
                         }
                         // пока не пройдена аутентификация - игнорируем сообщения от сервера, отличные от AuthAnswer
@@ -242,7 +244,7 @@ public class MainController implements Initializable {
 
         } else {
             authPassed = false;
-            btnConnect.setText("Подключиться");
+            Platform.runLater(() -> btnConnect.setText("Подключиться"));
             rpc.filesTable.getItems().clear();
             rpc.tfRemotePath.clear();
             lpc.update();
@@ -317,8 +319,7 @@ public class MainController implements Initializable {
                     Files.createDirectory(Paths.get(lpc.tfLocalPath.getText(), result.get()));
                     lpc.update();
                 } else if (rpc.filesTable.isFocused()) {
-                    Network.sendMsg(new FileRequest(rpc.filesTable.getSelectionModel().getSelectedItem().getFilename(),
-                            FileRequest.ActionType.CREATE_DIR));
+                    Network.sendMsg(new FileRequest(result.get(), FileRequest.ActionType.CREATE_DIR));
                 }
             }
         } catch (IOException e) {

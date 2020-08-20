@@ -23,12 +23,12 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     private final Path rootPath;
     Semaphore semaphore = new Semaphore(1);
 
-    Logger stdLogger = Server.stdLogger;
-    String serverStoragePath = Server.serverStoragePath;
+    Logger stdLogger = CloudBoxServer.stdLogger;
+    String serverStoragePath = CloudBoxServer.serverStoragePath;
 
     public MainHandler(String username) {
         this.username = username;
-        rootPath = Paths.get(serverStoragePath, username);
+        rootPath = Paths.get(serverStoragePath, username).toAbsolutePath();
         currentPath = rootPath;
     }
 

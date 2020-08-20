@@ -2,6 +2,7 @@
 /client/target/
 /common/target/
 /server/target/
-/client/src/main/resources/111
+/client/client_storage/
+/server/server_storage/
 /client/debug.log
 /server/debug.log

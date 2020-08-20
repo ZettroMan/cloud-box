@@ -5,14 +5,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_RIGHT" prefHeight="86.0" prefWidth="590.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zettro.java.cloudbox.client.TransferController">
-        <Label fx:id="fileName" maxWidth="Infinity" minHeight="-Infinity" prefHeight="31.0" text="Имя файла" textFill="#21119e">
-      <font>
-         <Font name="System Bold Italic" size="16.0" />
-      </font></Label>
-        <ProgressBar fx:id="transferProgressBar" maxWidth="Infinity" minHeight="-Infinity" prefHeight="28.0" progress="0.0" />
-<!--        <Button onAction="#pressCancelBtn" minHeight="-Infinity" prefHeight="26.0" prefWidth="115.0" text="Отмена" />-->
-   <padding>
-      <Insets left="5.0" right="5.0" />
-   </padding>
+<VBox alignment="TOP_RIGHT" prefHeight="86.0" prefWidth="590.0" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zettro.java.cloudbox.client.TransferController">
+    <Label fx:id="fileName" maxWidth="Infinity" minHeight="-Infinity" prefHeight="31.0" text="Имя файла" textFill="#21119e">
+        <font>
+            <Font name="System Bold Italic" size="14.0" />
+        </font>
+    </Label>
+    <ProgressBar fx:id="transferProgressBar" maxWidth="Infinity" minHeight="-Infinity" prefHeight="28.0" progress="0.0" />
+    <!--        <Button onAction="#pressCancelBtn" minHeight="-Infinity" prefHeight="26.0" prefWidth="115.0" text="Отмена" />-->
+    <padding>
+        <Insets left="5.0" right="5.0" />
+    </padding>
 </VBox>

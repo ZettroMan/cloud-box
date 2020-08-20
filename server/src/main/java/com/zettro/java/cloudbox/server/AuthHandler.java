@@ -11,8 +11,8 @@ import java.nio.file.Paths;
 
 public class AuthHandler extends ChannelInboundHandlerAdapter {
 
-    Logger stdLogger = Server.stdLogger;
-    String serverStoragePath = Server.serverStoragePath;
+    Logger stdLogger = CloudBoxServer.stdLogger;
+    String serverStoragePath = CloudBoxServer.serverStoragePath;
     String textMessage;
 
     @Override
@@ -44,7 +44,7 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
                 // создаем нового пользователя
                 try {
                     if (Files.exists(Paths.get(serverStoragePath, username))) {
-                        throw new Exception("Ошибка регистрации. Пользовательский каталог уже существует!");
+                        throw new Exception("Ошибка регистрации. Пользователь с таким именем уже зарегистрирован!");
                     }
                     SqlClient.createUser(username, password);
                     Files.createDirectory(Paths.get(serverStoragePath, username));
@@ -70,7 +70,7 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
                 ctx.writeAndFlush(new AuthAnswer(AuthAnswer.AuthResult.FAILED, textMessage));
                 return;
             }
-            textMessage = "Облачное хранилище CloudBox к Вашим услугам!\nДобро пожаловать!";
+            textMessage = "Облачное хранилище CloudBox к Вашим услугам!";
             stdLogger.info("Успешная аутентификация!");
             ctx.writeAndFlush(new AuthAnswer(AuthAnswer.AuthResult.PASSED, textMessage));
             // самоудаляемся и добавляем нормальный обработчик входного потока

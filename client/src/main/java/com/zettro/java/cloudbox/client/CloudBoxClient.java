@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
+import static javafx.stage.Modality.APPLICATION_MODAL;
+
 public class CloudBoxClient extends Application {
-    public final static String clientStoragePath = "C:\\_Study\\CloudBox\\client_storage";
+    public final static String clientStoragePath = "client_storage";
     public final static Logger stdLogger = Logger.getRootLogger();
     public final static Stage transferStage = new Stage();
     public static TransferController transferController = null;

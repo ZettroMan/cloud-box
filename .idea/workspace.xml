@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="">
+    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="20.08.2020 - 2">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/TransferController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/TransferController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/resources/transfer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/transfer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/AuthHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/AuthHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/CloudBoxServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,17 +64,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\client\src\main\resources" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\client\client_storage\user1" />
+      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\server\server_storage\user1" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.zettro.java.cloudbox.common" />
       <recent name="com.zettro.java.cloudbox.client" />
       <recent name="com.zettro.java.cloudbox.server" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\client\client_storage\user1" />
-      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\server\server_storage\user1" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_Study\Projects\GeekBrains\cloud-box\client\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Application.CloudBoxClient">
@@ -90,8 +92,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.zettro.java.cloudbox.server.Server" />
+    <configuration name="CloudBoxServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zettro.java.cloudbox.server.CloudBoxServer" />
       <module name="server" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/server" />
       <extension name="coverage">
@@ -106,12 +108,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.CloudBoxClient" />
-      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.CloudBoxServer" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CloudBoxClient" />
-        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.CloudBoxServer" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597916927852</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="20.08.2020 - 2">
+      <created>1597933075720</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1597933075720</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,7 +229,8 @@
     <MESSAGE value="Second commit" />
     <MESSAGE value="17.08.2020" />
     <MESSAGE value="20.08.2020 - 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="20.08.2020 - 1" />
+    <MESSAGE value="20.08.2020 - 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="20.08.2020 - 2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="249" y="6" key="#Project_Structure" timestamp="1597924600145">
@@ -243,14 +253,14 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="297" y="257" width="941" height="349" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1536.864@0.0.1536.864" timestamp="1597862669579" />
-    <state x="524" y="135" key="#xdebugger.evaluate" timestamp="1597863695154">
+    <state x="226" y="270" key="#xdebugger.evaluate" timestamp="1597939040870">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="524" y="135" key="#xdebugger.evaluate/0.0.1536.864@0.0.1536.864" timestamp="1597863695154" />
-    <state x="370" y="0" key="CommitChangelistDialog2" timestamp="1597916925499">
+    <state x="226" y="270" key="#xdebugger.evaluate/0.0.1536.864@0.0.1536.864" timestamp="1597939040870" />
+    <state x="370" y="0" key="CommitChangelistDialog2" timestamp="1597933611556">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="370" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597916925499" />
+    <state x="370" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597933611556" />
     <state width="692" height="466" key="DebuggerActiveHint" timestamp="1597822690310">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -271,22 +281,22 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="529" y="129" key="Github.UntrackedFilesDialog/0.0.1536.864@0.0.1536.864" timestamp="1596666705750" />
-    <state width="1493" height="189" key="GridCell.Tab.0.bottom" timestamp="1597932642344">
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom" timestamp="1597940513350">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597932642344" />
-    <state width="1493" height="189" key="GridCell.Tab.0.center" timestamp="1597932642344">
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597940513350" />
+    <state width="1493" height="222" key="GridCell.Tab.0.center" timestamp="1597940513349">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597932642344" />
-    <state width="1493" height="189" key="GridCell.Tab.0.left" timestamp="1597932642343">
+    <state width="1493" height="222" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597940513349" />
+    <state width="1493" height="222" key="GridCell.Tab.0.left" timestamp="1597940513349">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597932642343" />
-    <state width="1493" height="189" key="GridCell.Tab.0.right" timestamp="1597932642344">
+    <state width="1493" height="222" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597940513349" />
+    <state width="1493" height="222" key="GridCell.Tab.0.right" timestamp="1597940513350">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597932642344" />
+    <state width="1493" height="222" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597940513350" />
     <state x="299" y="87" key="Maven.ArtifactSearchDialog" timestamp="1597926692385">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -295,18 +305,18 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="584" y="366" key="ReplaceDuplicatesPrompt/0.0.1536.864@0.0.1536.864" timestamp="1597916325239" />
-    <state x="555" y="66" key="SettingsEditor" timestamp="1596865430397">
+    <state x="498" y="13" key="SettingsEditor" timestamp="1597940276567">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="555" y="66" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1596865430397" />
+    <state x="498" y="13" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1597940276567" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1597831736274">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.864@0.0.1536.864" timestamp="1597831736274" />
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597916965850">
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597933088087">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597916965850" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597933088087" />
     <state x="407" y="161" width="1035" height="543" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1597008390237">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -315,18 +325,18 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1597566802032" />
-    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597832823506">
+    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597936892648">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1597832823506" />
+    <state x="315" y="168" width="906" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1597936892648" />
     <state x="499" y="204" key="extract.method.dialog" timestamp="1597916320051">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="204" key="extract.method.dialog/0.0.1536.864@0.0.1536.864" timestamp="1597916320051" />
-    <state x="477" y="165" width="978" height="542" key="find.popup" timestamp="1597933031037">
+    <state x="477" y="165" width="978" height="542" key="find.popup" timestamp="1597937273783">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="477" y="165" width="978" height="542" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1597933031037" />
+    <state x="477" y="165" width="978" height="542" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1597937273783" />
     <state x="570" y="338" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1596666554415">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -351,6 +361,31 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/SqlClient.java</url>
           <line>40</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java</url>
+          <line>250</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/Network.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/Network.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/RemotePanelController.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
