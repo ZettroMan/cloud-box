@@ -16,10 +16,12 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
 public class MainController implements Initializable {
 
+    private static final int CFM_BUFFER_SIZE = 1024 * 1024;
     @FXML
     public TextField tfUsername;
     @FXML
@@ -37,6 +39,7 @@ public class MainController implements Initializable {
 
     LocalPanelController lpc;
     RemotePanelController rpc;
+    TransferController transferController;
     private boolean authPassed = false;
     private FileOutputStream fos = null;
     private int chunkCounter = 0;
@@ -44,7 +47,8 @@ public class MainController implements Initializable {
     FilesListRequest filesListRequest = new FilesListRequest();
     private boolean transferMode = false;
     Logger stdLogger = CloudBoxClient.stdLogger;
-    String clientStoragePath = CloudBoxClient.clientStoragePath;
+    Stage transferStage = CloudBoxClient.transferStage;
+    private long downloadFileSize = CFM_BUFFER_SIZE;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,24 +87,45 @@ public class MainController implements Initializable {
         }
     }
 
-    public void sendFile() throws IOException {
-        if (lpc.filesTable.getSelectionModel().getSelectedItem() != null &&
-                (lpc.filesTable.getSelectionModel().getSelectedItem().getSize() != -1L)) {
-            ChunkedFileMessage cfm = new ChunkedFileMessage(Paths.get(lpc.tfLocalPath.getText(),
-                    lpc.filesTable.getSelectionModel().getSelectedItem().getFilename()), 1024 * 1024);
-            Network.sendMsg(cfm);
-            while (cfm.readNextChunk() != -1) {
-                Network.sendMsg(cfm);
+    public void sendFile() {
+        transferController = CloudBoxClient.transferController;
+        transferController.transferProgressBar.setProgress(0.0);
+        transferController.fileName.setText(lpc.filesTable.getSelectionModel().getSelectedItem().getFilename());
+        transferStage.show();
+        new Thread(() -> {
+            try {
+                if (lpc.filesTable.getSelectionModel().getSelectedItem() != null &&
+                        (lpc.filesTable.getSelectionModel().getSelectedItem().getSize() != -1L)) {
+                    long bytesTransferred = 0L;
+                    long fileSize = lpc.filesTable.getSelectionModel().getSelectedItem().getSize();
+                    ChunkedFileMessage cfm = new ChunkedFileMessage(Paths.get(lpc.tfLocalPath.getText(),
+                            lpc.filesTable.getSelectionModel().getSelectedItem().getFilename()), CFM_BUFFER_SIZE);
+                    Network.sendMsg(cfm);
+                    while (cfm.readNextChunk() != -1) {
+                        Network.sendMsg(cfm);
+                        bytesTransferred += cfm.getBytesRead();
+                        // здесь fileSize не должен быть равен 0, поскольку для пустых файлов мы в этот блок кода не попадем
+                        long finalBytesTransferred = bytesTransferred;
+                        Platform.runLater(() -> transferController.transferProgressBar.setProgress(((double) finalBytesTransferred) / fileSize));
+                    }
+                    Network.sendMsg(cfm);
+                    cfm.close();
+                    Network.sendMsg(filesListRequest);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Не удалось передать файл", ButtonType.OK);
+                alert.showAndWait();
             }
-            Network.sendMsg(cfm);
-            cfm.close();
-            Network.sendMsg(filesListRequest);
-        }
+            Platform.runLater(() -> transferStage.close());
+        }).start();
     }
 
     public void downloadFile() {
         if (rpc.filesTable.getSelectionModel().getSelectedItem() != null &&
                 (rpc.filesTable.getSelectionModel().getSelectedItem().getSize() != -1L)) {
+            downloadFileSize = rpc.filesTable.getSelectionModel().getSelectedItem().getSize();
+            if (downloadFileSize == 0L) downloadFileSize = CFM_BUFFER_SIZE;
             Network.sendMsg(new FileRequest(rpc.filesTable.getSelectionModel().getSelectedItem().getFilename(),
                     FileRequest.ActionType.DOWNLOAD));
         }
@@ -118,6 +143,7 @@ public class MainController implements Initializable {
             }
             // запускаем поток, обрабатывающий входящие сообщения
             Thread t = new Thread(() -> {
+                long bytesTransferred = 0L;
                 try {
                     lpc.update();
                     while (true) {
@@ -140,18 +166,11 @@ public class MainController implements Initializable {
                             }
                             authPassed = false;
                             stdLogger.info(authAnswer.getMessage());
-                            if (cbNewUser.isSelected()) {
-                                Platform.runLater(() -> {
-                                    Alert alert = new Alert(Alert.AlertType.INFORMATION, authAnswer.getMessage(), ButtonType.OK);
-                                    alert.showAndWait();
-                                });
-                            } else {
-                                Platform.runLater(() -> {
-                                    Alert alert = new Alert(Alert.AlertType.INFORMATION, authAnswer.getMessage(), ButtonType.OK);
-                                    alert.showAndWait();
-                                });
-                            }
-                            btnConnect.setText("Подключиться");
+                            Platform.runLater(() -> {
+                                btnConnect.setText("Подключиться");
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION, authAnswer.getMessage(), ButtonType.OK);
+                                alert.showAndWait();
+                            });
                             rpc.filesTable.getItems().clear();
                             lpc.update();
                             Network.stop(); // отключаем соединение полностью
@@ -168,15 +187,26 @@ public class MainController implements Initializable {
                             if (cfm.getBytesRead() != -1) {
                                 if (cfm.getBytesRead() == 0) {
                                     fos = new FileOutputStream(lpc.tfLocalPath.getText() + "\\" + cfm.getFileName());
+                                    bytesTransferred = 0L;
                                     chunkCounter = 1;
+                                    Platform.runLater(()->{
+                                        transferController = CloudBoxClient.transferController;
+                                        transferController.transferProgressBar.setProgress(0.0);
+                                        transferController.fileName.setText(cfm.getFileName());
+                                        transferStage.show();
+                                    });
                                 } else {
                                     fos.write(cfm.getData(), 0, cfm.getBytesRead());
                                     chunkCounter++;
+                                    bytesTransferred += cfm.getBytesRead();
+                                    long finalBytesTransferred = bytesTransferred;
+                                    Platform.runLater(() -> transferController.transferProgressBar.setProgress(((double) finalBytesTransferred) / downloadFileSize));
                                 }
                             } else {
                                 fos.close();
                                 fos = null;
                                 transferMode = false;
+                                Platform.runLater(() -> transferStage.close());
                                 lpc.update();
                             }
                             continue;
@@ -218,18 +248,13 @@ public class MainController implements Initializable {
             lpc.update();
             Network.stop();
         }
+
     }
 
     public void pressOnCopyBtn(ActionEvent actionEvent) {
         if (!authPassed) return;
         if (lpc.filesTable.isFocused()) {
-            try {
-                sendFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Не удалось передать файл", ButtonType.OK);
-                alert.showAndWait();
-            }
+            sendFile();
         } else if (rpc.filesTable.isFocused()) {
             downloadFile();
         }

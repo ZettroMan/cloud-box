@@ -14,6 +14,7 @@ import java.util.concurrent.Semaphore;
 
 public class MainHandler extends ChannelInboundHandlerAdapter {
 
+    private static final int CFM_BUFFER_SIZE = 1024 * 1024;
     private final String username;
     private FileOutputStream fos = null;
     private int chunkCounter = 0;
@@ -29,7 +30,6 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         this.username = username;
         rootPath = Paths.get(serverStoragePath, username);
         currentPath = rootPath;
-
     }
 
     @Override
@@ -71,7 +71,6 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                     fos.write(cfm.getData(), 0, cfm.getBytesRead());
                 }
             } else {
-                // fos.flush(); - скорее всего это лишнее
                 fos.close();
                 fos = null;
             }
@@ -130,7 +129,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             transferMode = true;
             new Thread(() -> {
                 try {
-                    ChunkedFileMessage cfm = new ChunkedFileMessage(filePath, 1024 * 1024);
+                    ChunkedFileMessage cfm = new ChunkedFileMessage(filePath, CFM_BUFFER_SIZE);
                     chunkCounter = 0;
                     semaphore.acquire();
                     ctx.writeAndFlush(cfm); // сначала создаем файл (bytesRead == 0)
@@ -156,6 +155,10 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        if(fos != null) {
+            fos.close();
+            fos = null;
+        }
         stdLogger.info("Клиент отключился.");
     }
 

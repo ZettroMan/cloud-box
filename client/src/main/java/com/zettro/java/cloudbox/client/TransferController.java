@@ -1,23 +1,22 @@
 package com.zettro.java.cloudbox.client;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+public class TransferController {
 
-public class TransferController implements Initializable {
+    @FXML
+    Label fileName;
+    @FXML
+    ProgressBar transferProgressBar;
 
-    public Label operationDescription;
-    public ProgressBar transferProgressBar;
+//    public void pressCancelBtn(ActionEvent actionEvent) {
+//        Stage stage = (Stage) transferProgressBar.getScene().getWindow();
+//        // cancel transfer operation
+//        stage.close();
+//    }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
-
-    public void pressCancelBtn(ActionEvent actionEvent) {
-    }
-}
+ }

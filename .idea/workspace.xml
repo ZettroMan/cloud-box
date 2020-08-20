@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="20.08.2020 - 1">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="89a14644-6b6c-448b-a698-a7860cd54fb4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/CloudBoxClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/zettro/java/cloudbox/common/FileRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/TransferController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/zettro/java/cloudbox/client/TransferController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/transfer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/transfer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/zettro/java/cloudbox/server/MainHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597866523110</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="20.08.2020 - 1">
+      <created>1597916927852</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1597916927852</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,10 +223,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="20.08.2020 - 1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="6" key="#Project_Structure" timestamp="1597827218377">
+    <state x="249" y="6" key="#Project_Structure" timestamp="1597924600145">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="249" y="6" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1597827218377" />
+    <state x="249" y="6" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1597924600145" />
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596667631974">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -227,10 +235,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="543" y="234" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864@0.0.1536.864" timestamp="1597819701292" />
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1597915230085">
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1597924090156">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597915230085" />
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1597924090156" />
     <state x="297" y="257" width="941" height="349" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1597862669579">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -239,10 +247,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="524" y="135" key="#xdebugger.evaluate/0.0.1536.864@0.0.1536.864" timestamp="1597863695154" />
-    <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1597916793537">
+    <state x="370" y="0" key="CommitChangelistDialog2" timestamp="1597916925499">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="395" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597916793537" />
+    <state x="370" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1597916925499" />
     <state width="692" height="466" key="DebuggerActiveHint" timestamp="1597822690310">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -263,26 +271,26 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="529" y="129" key="Github.UntrackedFilesDialog/0.0.1536.864@0.0.1536.864" timestamp="1596666705750" />
-    <state width="1493" height="277" key="GridCell.Tab.0.bottom" timestamp="1597866560015">
+    <state width="1493" height="189" key="GridCell.Tab.0.bottom" timestamp="1597932642344">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597866560015" />
-    <state width="1493" height="277" key="GridCell.Tab.0.center" timestamp="1597866560013">
+    <state width="1493" height="189" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1597932642344" />
+    <state width="1493" height="189" key="GridCell.Tab.0.center" timestamp="1597932642344">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597866560013" />
-    <state width="1493" height="277" key="GridCell.Tab.0.left" timestamp="1597866560013">
+    <state width="1493" height="189" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1597932642344" />
+    <state width="1493" height="189" key="GridCell.Tab.0.left" timestamp="1597932642343">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597866560013" />
-    <state width="1493" height="277" key="GridCell.Tab.0.right" timestamp="1597866560014">
+    <state width="1493" height="189" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1597932642343" />
+    <state width="1493" height="189" key="GridCell.Tab.0.right" timestamp="1597932642344">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="277" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597866560014" />
-    <state x="299" y="87" key="Maven.ArtifactSearchDialog" timestamp="1597593954535">
+    <state width="1493" height="189" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1597932642344" />
+    <state x="299" y="87" key="Maven.ArtifactSearchDialog" timestamp="1597926692385">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="299" y="87" key="Maven.ArtifactSearchDialog/0.0.1536.864@0.0.1536.864" timestamp="1597593954535" />
+    <state x="299" y="87" key="Maven.ArtifactSearchDialog/0.0.1536.864@0.0.1536.864" timestamp="1597926692385" />
     <state x="584" y="366" key="ReplaceDuplicatesPrompt" timestamp="1597916325239">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -295,10 +303,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.864@0.0.1536.864" timestamp="1597831736274" />
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597866543337">
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1597916965850">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597866543337" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1597916965850" />
     <state x="407" y="161" width="1035" height="543" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1597008390237">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -315,10 +323,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="204" key="extract.method.dialog/0.0.1536.864@0.0.1536.864" timestamp="1597916320051" />
-    <state x="477" y="165" width="581" height="534" key="find.popup" timestamp="1597913785282">
+    <state x="477" y="165" width="978" height="542" key="find.popup" timestamp="1597933031037">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="477" y="165" width="581" height="534" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1597913785282" />
+    <state x="477" y="165" width="978" height="542" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1597933031037" />
     <state x="570" y="338" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1596666554415">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -331,10 +339,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="563" y="179" key="refactoring.ChangeSignatureDialog/0.0.1536.864@0.0.1536.864" timestamp="1597833929558" />
-    <state x="425" y="197" key="run.anything.popup" timestamp="1597830194245">
+    <state x="425" y="197" key="run.anything.popup" timestamp="1597931045470">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1597830194245" />
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1597931045470" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
